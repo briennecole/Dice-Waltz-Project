@@ -1,3 +1,5 @@
+// added from stackoverflow
+// https://stackoverflow.com/questions/52540974/show-dice-element-corresponding-to-random-number-generated-on-click
 function roll() {
   var die = Math.floor(Math.random() * 6) + 1;
   $('#die').removeAttr('class').addClass('die' + die);
