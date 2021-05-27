@@ -1,3 +1,15 @@
+body{
+    background-image: url('../images/parchmentpaper.jpg');
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: 100% 100%;
+}
+.bg-image{
+  background-size: cover;
+  background-attachment:fixed;
+  height: 100%;
+}
+
 /* added from stackoverflow */
 .dice {
   position: relative;
