@@ -1,4 +1,4 @@
 #Advice from Terra
 Goal: Convert MIDI file into a dataframe.
-Need object.values of dataset to get rid of nested object. Then we want to export that another json file so we can set up that schema
+Need object.values of dataset to get rid of nested object. Then we want to export that to another json file so we can set up that schema
 Find the algorithm behind Mozart's chart and what the numbers in the cells mean as notes. Grade the ML model against those as the 'good' standard.
