@@ -1,0 +1,28 @@
+<html>
+<head>
+  ...
+  <!-- You need to bring your own Tone.js for the player, and tfjs for the model -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.21/Tone.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.2.8/tf.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.0.0"></script> -->
+  <!-- Core library, since we're going to use a player -->
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0/es6/core.js"></script>
+  <!--Model we want to use -->
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0/es6/music_rnn.js"></script>
+</head>
+<script>
+  // Each bundle exports a global object with the name of the bundle.
+  //const player = new core.Player();
+  //... https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn
+  const mrnn = new music_rnn.MusicRNN('https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn');
+  mrnn.initialize().then(() => {
+    music_rnn.urlToNoteSequence('static/resources/M96.MID') // Small rhythm midi file
+      .then((url_note_seq) => {
+        note_seq = url_note_seq;
+        music_rnn.continueSequence(note_seq, 20).then((new_seq) => {
+          player.start(new_seq);
+        });
+      })
+  });
+</script>
+</html>
