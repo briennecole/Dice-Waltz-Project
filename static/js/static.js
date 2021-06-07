@@ -74,22 +74,7 @@ $('#roll').click(() => {
   }
   // player.("M${m1}.MID")
 
-  const player = new core.Player();
-const melodyCheckpoint = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn';
-const musicRnn = new music_rnn.MusicRNN(melodyCheckpoint);
-musicRnn.initialize().then(() => {
-  core.urlToNoteSequence('MIDIFiles/M1.MID').then((note_seq) => {
-    console.log(note_seq)
-    const quantized = core.sequences.quantizeNoteSequence(note_seq, note_seq.tempos[0].qpm);
-    console.log(quantized)
-    musicRnn.continueSequence(quantized, 1200, 0.8).then((new_seq) => {
-      console.log(new_seq)
-      const combined = core.sequences.concatenate([quantized, new_seq])
-      console.log(combined)
-      player.start(combined);
-    })
-  })
-});
+ 
 });
 
 // save roll in variable
