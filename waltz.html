@@ -13,6 +13,8 @@
          <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.21.0/es6/core.js"></script>
          <!--Model we want to use -->
          <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.21.0/es6/music_rnn.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+         
     </head>
     <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -287,13 +289,63 @@
         </div>
         <div id="die2" class="dice">
         </div>
+        <!-- // --------------------------------PLAYER HTML ---------------------------------------     -->
+
+
+        <div class="controls">
+          <button id = "play">Play</button>
+        </div>
+
+  <!-- // --------------------------------PLAYER JS ---------------------------------------     -->
+    <!-- // Initialize the model.
+
+
+    music_rnn = new music_rnn.MusicRNN('https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn');
+    music_rnn.initialize();
+    
+    // Create a player to play the sequence we'll get from the model.
+    rnnPlayer = new music_rnn.Player();
+    
+    function play() {
+      if (rnnPlayer.isPlaying()) {
+        rnnPlayer.stop();
+        return;
+      }
+          
+      // The model expects a quantized sequence, and ours was unquantized:
+      const qns = music_rnn.sequences.quantizeNoteSequence(ORIGINAL_TWINKLE_TWINKLE, 4);
+      music_rnn
+      .continueSequence(qns, rnn_steps, rnn_temperature)
+      .then((sample) => rnnPlayer.start(sample));
+    } -->
+
+
+        <!-- // --------------------------------END PLAYER JS ---------------------------------------     -->
         <div class="player" id= "visualizer">
             <script type="text/javascript">
-            const player = new core.Player();
+            const rnnPlayer = new core.Player();
+
+            function playRNN(note_seq) {
+              if (rnnPlayer.isPlaying()) {
+                rnnPlayer.stop();
+                event.target.textContent = 'Play';
+                return;
+              } else {
+                event.target.textContent = 'Stop';
+              }
+              // The model expects a quantized sequence, and ours was unquantized:
+              const qns = music_rnn.sequences.quantizeNoteSequence(note_seq, 4);
+            
+              music_rnn
+              .continueSequence(qns, rnn_steps, rnn_temperature)
+              .then((sample) => rnnPlayer.start(sample));
+            }
+
+            // const MIDIplayer = new core.MIDIplayer();
           const melodyCheckpoint = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn';
           const musicRnn = new music_rnn.MusicRNN(melodyCheckpoint);
           musicRnn.initialize().then(() => {
-            core.urlToNoteSequence('static/resources/M1.MID').then((note_seq) => {
+            core.urlToNoteSequence(`static/resources/M${m1}.MID`).then((note_seq) => {
               console.log(note_seq)
               const quantized = core.sequences.quantizeNoteSequence(note_seq, note_seq.tempos[0].qpm);
               console.log(quantized)
@@ -301,31 +353,71 @@
                 console.log(new_seq)
                 const combined = core.sequences.concatenate([quantized, new_seq])
                 console.log(combined)
-                let config = {
-                noteHeight: 6,
-                pixelsPerTimeStep: 30,  // like a note width
-                noteSpacing: 1,
-                noteRGB: '8, 41, 64',
-                activeNoteRGB: '240, 84, 119',
-                  }
-                  let visualizer = new core.Visualizer(combined, document.getElementById('visualizer'), config);
-                  let vizPlayer = new core.Player(false, {
-                    run: (note) => viz.redraw(note),
-                    stop: () => {console.log('done');}
-          });
-                player.start(combined);
-                player.resume(combined);
-                document.getElementById('roll').onclick.player.resume(combined);
 
+                document.getElementById("play").addEventListener("click", playRnn(combined))
+
+             // --------------------------------VISUALIZER---------------------------------------    
+            //     let config = {
+            //     noteHeight: 6,
+            //     pixelsPerTimeStep: 30,  // like a note width
+            //     noteSpacing: 1,
+            //     noteRGB: '8, 41, 64',
+            //     activeNoteRGB: '240, 84, 119',
+            // };
+            //       const visualizer = new core.Visualizer(combined, document.getElementById('visualizer'), config);
+            //               const vizPlayer = new core.Player(false, {
+            //                 run: (note) => visualizer.redraw(note),
+            //                 stop: () => {console.log('done');}
+            //       });
+
+            // --------------------------------PLAYER---------------------------------------
+            //      player.start(combined);
+            //      player.resume(combined);
+            //      document.getElementById('roll').onclick.player.start(combined);
+            //      document.getElementById('roll').onclick.player.resume(combined);
+            // ---------------------------------MAGENTA QUANTIZED PLAYER ---------------------------- 
+            
+
+
+            
+            //setup variables
+            var player, visualizer, viz, vizPLayer;
+            var music_rnn, rnnPlayer, music_vae, vaePlayer;
+            //createSamplePlayers();
+            //setupMusicRNN();
+
+
+
+            //function createSamplePlayers() {
+              // A plain NoteSequence player
+            //  player = new core.Player();
+            //}
+            
+            //var rnn_steps = 20;
+            //var rnn_temperature = 1.5;
+            //function setupMusicRNN() {
+              // Initialize model
+            //  music_rnn = new music_rnn.MusicRNN('https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn');
+            //  music_rnn.initialize();
+            
+              // Create a player to play the sampled sequence.
+            //  rnnPlayer = new music_rnn.Player();
+            //}
+            
+            
+        
               })
             })
           });
+
+
             </script>
-        </div>
+
+
+              </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="static/js/static.js"></script>
 
+<script type="text/javascript" src="static/js/static.js"></script>
     </body>
 </html>
