@@ -1,6 +1,11 @@
 // added from stackoverflow
 // https://stackoverflow.com/questions/52540974/show-dice-element-corresponding-to-random-number-generated-on-click
+<<<<<<< HEAD
 let m1=96;
+||||||| 546f49a
+=======
+let m1= 96;
+>>>>>>> briana-branch
 $('#roll').click(() => {
   let num = Math.floor(Math.random() * 6) + 1;
   let num2= Math.floor(Math.random() * 6) + 1;
