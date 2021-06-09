@@ -310,7 +310,7 @@
                   }
                   let visualizer = new core.Visualizer(combined, document.getElementById('visualizer'), config);
                   let vizPlayer = new core.Player(false, {
-                    run: (note) => viz.redraw(note),
+                    run: (note) => visualizer.redraw(note),
                     stop: () => {console.log('done');}
           });
                 player.start(combined);
@@ -321,6 +321,22 @@
             })
           });
             </script>
+  <div class="container-fluid">
+    <div class="bg-image">
+        <div class="info">
+            <h3 id= "flavtext">The Process...</h3>
+            <h5 id= "flavtext">Import human composed music files</h5>
+            <p id= "flavtext">  The dice roll corresponds to individual midi (music) files of Mozart's dice game table, which are imported and stored to 
+              convert and run the the Music_Rnn model of Magenta. Magenta was started by researchers and engineers from the Google Brain team and is 
+              distributed as an open source python library. This library includes utilities for manipulating source data (primarily music and images), 
+              using this data to train machine learning models, and finally generating new content from these models.  </p>
+              <a href="https://magenta.github.io/magenta-js/music/globals.html" target="_blank">Magenta Music</a>
+        
+              <h5 id= "flavtext">File conversion, quantizing and machine learning</h5>
+              <p id= "flavtext">Briana's text here </p>
+
+              <h5 id= "flavtext">Output</h5>
+              <p id= "flavtext">The magenta model then concatenates the original note string with the string it generated and plays them back to back.  </p>
         </div>
     </div>
 </div>
