@@ -1,5 +1,6 @@
 // added from stackoverflow
 // https://stackoverflow.com/questions/52540974/show-dice-element-corresponding-to-random-number-generated-on-click
+let m1=96;
 $('#roll').click(() => {
   let num = Math.floor(Math.random() * 6) + 1;
   let num2= Math.floor(Math.random() * 6) + 1;
@@ -74,7 +75,7 @@ $('#roll').click(() => {
   }
   // player.("M${m1}.MID")
 
- 
+
 });
 
 // save roll in variable

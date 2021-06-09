@@ -13,6 +13,14 @@
          <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.21.0/es6/core.js"></script>
          <!--Model we want to use -->
          <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.21.0/es6/music_rnn.js"></script>
+
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
     </head>
     <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -287,61 +295,40 @@
         </div>
         <div id="die2" class="dice">
         </div>
+        <div class="controls">
+          <button id = "play">Play</button>
+        </div>
+
         <div class="player" id= "visualizer">
             <script type="text/javascript">
-            const player = new core.Player();
-          const melodyCheckpoint = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn';
-          const musicRnn = new music_rnn.MusicRNN(melodyCheckpoint);
-          musicRnn.initialize().then(() => {
-            core.urlToNoteSequence('static/resources/M1.MID').then((note_seq) => {
-              console.log(note_seq)
-              const quantized = core.sequences.quantizeNoteSequence(note_seq, note_seq.tempos[0].qpm);
-              console.log(quantized)
-              musicRnn.continueSequence(quantized, 1200, 0.8).then((new_seq) => {
-                console.log(new_seq)
-                const combined = core.sequences.concatenate([quantized, new_seq])
-                console.log(combined)
-                let config = {
-                noteHeight: 6,
-                pixelsPerTimeStep: 30,  // like a note width
-                noteSpacing: 1,
-                noteRGB: '8, 41, 64',
-                activeNoteRGB: '240, 84, 119',
-                  }
-                  let visualizer = new core.Visualizer(combined, document.getElementById('visualizer'), config);
-                  let vizPlayer = new core.Player(false, {
-                    run: (note) => visualizer.redraw(note),
-                    stop: () => {console.log('done');}
-          });
-                player.start(combined);
-                player.resume(combined);
-                document.getElementById('roll').onclick.player.resume(combined);
+            // const player = new core.Player();
+            const rnnPlayer = new core.Player();
+            const melodyCheckpoint = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn';
+            const musicRnn = new music_rnn.MusicRNN(melodyCheckpoint);
+            musicRnn.initialize().then(() => {
+            core.urlToNoteSequence(`static/resources/M${m1}.MID`).then((note_seq) => {
+                console.log(note_seq)
+                const quantized = core.sequences.quantizeNoteSequence(note_seq, note_seq.tempos[0].qpm);
+                console.log(quantized)
+                musicRnn.continueSequence(quantized, 1200, 0.8).then((new_seq) => {
+                    console.log(new_seq)
+                    const combined = core.sequences.concatenate([quantized, new_seq])
+                    console.log(combined);
+                    rnnPlayer.start(combined);
 
-              })
             })
-          });
-            </script>
-  <div class="container-fluid">
-    <div class="bg-image">
-        <div class="info">
-            <h3 id= "flavtext">The Process...</h3>
-            <h5 id= "flavtext">Import human composed music files</h5>
-            <p id= "flavtext">  The dice roll corresponds to individual midi (music) files of Mozart's dice game table, which are imported and stored to 
-              convert and run the the Music_Rnn model of Magenta. Magenta was started by researchers and engineers from the Google Brain team and is 
-              distributed as an open source python library. This library includes utilities for manipulating source data (primarily music and images), 
-              using this data to train machine learning models, and finally generating new content from these models.  </p>
-              <a href="https://magenta.github.io/magenta-js/music/globals.html" target="_blank">Magenta Music</a>
-        
-              <h5 id= "flavtext">File conversion, quantizing and machine learning</h5>
-              <p id= "flavtext">Briana's text here </p>
+          })
+        });
+                // document.getElementById('roll').addEventListener("click", playRNN());
+                // document.getElementById("play").addEventListener("click", playRNN());
 
-              <h5 id= "flavtext">Output</h5>
-              <p id= "flavtext">The magenta model then concatenates the original note string with the string it generated and plays them back to back.  </p>
-        </div>
+            </script>
+
+
+              </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="static/js/static.js"></script>
 
+<script type="text/javascript" src="static/js/static.js"></script>
     </body>
 </html>
