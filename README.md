@@ -22,6 +22,10 @@ Deploy our interactive website using Github.io which will allows users to click 
 https://briennecole.github.io/Dice-Waltz-Project/
 
 
+## Premise
+The dice roll corresponds to individual midi (music) files of Mozart's dice game table, which are imported and stored to convert and run the the Music_Rnn model of Magenta. Magenta was started by researchers and engineers from the Google Brain team and is distributed as an open source python library. This library includes utilities for manipulating source data (primarily music and images), using this data to train machine learning models, and finally generating new content from these models.
+
+
 ![mozart-game](https://user-images.githubusercontent.com/75045133/121566369-4a316b80-c9d2-11eb-8bee-43fff154681c.jpg)
 
 ## Some of the Process Behind the Model
