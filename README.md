@@ -21,6 +21,9 @@ Deploy our interactive website using Github.io which will allows users to click 
 ## Github Page
 https://briennecole.github.io/Dice-Waltz-Project/
 
+
+![mozart-game](https://user-images.githubusercontent.com/75045133/121566369-4a316b80-c9d2-11eb-8bee-43fff154681c.jpg)
+
 ## Some of the Process Behind the Model
 
 The first step after importing our MIDI music file into a Machine Learning model is to convert the music notes into a computer readable numerical representation called a Note Sequence. 
