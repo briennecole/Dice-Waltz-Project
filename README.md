@@ -16,7 +16,11 @@ https://drive.google.com/file/d/1qnQVK17DNVkU19MgVA4Vg88zRDvwCRXw/view. - classi
 Our proposal is to use a randomly generated dice rolls with a machine learning neural network to compose classical shorts. We can then test these against known classical pieces from our favorite composers.
 
 #### Website
-Deploy our interactive website using Heroku which will allows users to click the "roll dice" button to generate their own randomly composed classical short.
+Deploy our interactive website using Github.io which will allows users to click the "roll dice" button to generate their own randomly composed classical short.
+
+
+## Github Page
+https://briennecole.github.io/Dice-Waltz-Project/
 
 
 
