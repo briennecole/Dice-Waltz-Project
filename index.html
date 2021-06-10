@@ -319,9 +319,9 @@
             })
           })
         });
-                
-                <div class="container-fluid">
-     <div class="bg-image">
+      </script>   
+    <div class="container-fluid">
+      <div class="bg-image">
          <div class="info">
              <h3 id= "flavtext">The Process...</h3>
              <h5 id= "flavtext">Import human composed music files</h5>
@@ -334,32 +334,37 @@
                <h5 id= "flavtext">File conversion, quantizing and machine learning</h5>
                <p id= "flavtext">Convert MIDI files to Note Sequence:
                 Before we can import our MIDI music file into a Machine Learning model, we need to convert the music notes into a computer readable numerical 
-                representation called a Note Sequence. 
+                representation called a Note Sequence. </p>
                 
-                Quantization: 
+                <p id= "flavtext">Quantization: 
                 "In digital music processing technology, quantization is the studio-software process of transforming performed musical notes, which may have some 
-                imprecision due to expressive performance, to an underlying musical representation that eliminates the imprecision."
-                <a href="https://en.wikipedia.org/wiki/Quantization_(music)" target="blank" </a>
+                imprecision due to expressive performance, to an underlying musical representation that eliminates the imprecision."</p>
+                <a href="https://en.wikipedia.org/wiki/Quantization_(music)" target="_blank">More on Quantization</a>
                 
-                API call:
+                <p id= "flavtext">API call:
                 Now that we have a quantized note sequence, we access Magentas pre-trained ML models using an API call. We decided to use the MusicRNN model which 
-                takes in a melody and continues the sequence. 
+                takes in a melody and continues the sequence. </p>
                 
-                The MelodyRnn model:
+                <p id= "flavtext"></p>The MelodyRnn model:
                 The MelodyRnn model uses a Long Short-Term Memory (LSTM) recurrent neural network. It uses basic one-hot encoding to represent extracted melodies 
                 as input to the LSTM. "A recurrent neural network is a class of artificial neural networks that make use of sequential information. They are called 
                 recurrent because they perform the same function for every single element of a sequence, with the result being dependent on previous computations. 
                 Whereas outputs are independent of previous computations in traditional neural networks. In this tutorial we used a Long Short-Term Memory (LSTM) network. 
                 They are a type of Recurrent Neural Network that are able to recognise and encode long-term patterns. LSTMs are extremely useful to solve problems where 
                 the network has to remember information for a long period of time as is the case in music and text generation."</p>
-                <a href="https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5" target="blank"</a>
+                <a href="https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5" target="_blank">More on MelodyRNN Model</a>
 
-               <h5 id= "flavtext">Output</h5>
+                <h5 id= "flavtext">Output</h5>
                <p id= "flavtext">The magenta model then concatenates the original note string with the string it generated and plays them back to back.  </p
+
+          </div>
+        </div>
+    </div>
+
                 // document.getElementById('roll').addEventListener("click", playRNN());
                 // document.getElementById("play").addEventListener("click", playRNN());
 
-            </script>
+            <!-- </script> -->
 
 
               </div>
